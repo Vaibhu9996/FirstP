@@ -108,7 +108,7 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">{analysis.title || "Analysis Dashboard"}</h1>
-          <p className="text-sm text-[var(--muted-foreground)] mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Created {formatDate(analysis.createdAt)} &middot; Updated{" "}
             {formatDate(analysis.updatedAt)}
           </p>
@@ -134,30 +134,30 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <Card>
           <CardContent className="pt-4 pb-3 text-center">
-            <Brain className="h-5 w-5 mx-auto text-[var(--primary)] mb-1" />
+            <Brain className="h-5 w-5 mx-auto text-primary mb-1" />
             <p className="text-2xl font-bold">{analysis.metadata.totalAIInteractions}</p>
-            <p className="text-xs text-[var(--muted-foreground)]">AI Interactions</p>
+            <p className="text-xs text-muted-foreground">AI Interactions</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4 pb-3 text-center">
             <GitBranch className="h-5 w-5 mx-auto text-purple-600 mb-1" />
             <p className="text-2xl font-bold">{analysis.tree.nodes.length}</p>
-            <p className="text-xs text-[var(--muted-foreground)]">Tree Nodes</p>
+            <p className="text-xs text-muted-foreground">Tree Nodes</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4 pb-3 text-center">
-            <Star className="h-5 w-5 mx-auto text-[var(--fundamental)] mb-1" />
+            <Star className="h-5 w-5 mx-auto text-gold mb-1" />
             <p className="text-2xl font-bold">{fundamentalTruths.length}</p>
-            <p className="text-xs text-[var(--muted-foreground)]">First Principles</p>
+            <p className="text-xs text-muted-foreground">First Principles</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-4 pb-3 text-center">
             <Puzzle className="h-5 w-5 mx-auto text-emerald-600 mb-1" />
             <p className="text-2xl font-bold">{analysis.solutions.length}</p>
-            <p className="text-xs text-[var(--muted-foreground)]">Solutions</p>
+            <p className="text-xs text-muted-foreground">Solutions</p>
           </CardContent>
         </Card>
       </div>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
                     phase.done
                       ? "bg-emerald-500/10 text-emerald-600"
-                      : "bg-[var(--muted)] text-[var(--muted-foreground)]"
+                      : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {phase.done ? (
@@ -186,10 +186,10 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{phase.label}</p>
-                  <p className="text-xs text-[var(--muted-foreground)]">{phase.detail}</p>
+                  <p className="text-xs text-muted-foreground">{phase.detail}</p>
                 </div>
                 {i < phases.length - 1 && (
-                  <div className="hidden sm:block w-px h-4 bg-[var(--border)]" />
+                  <div className="hidden sm:block w-px h-4 bg-border" />
                 )}
               </div>
             ))}
@@ -206,17 +206,17 @@ export default function DashboardPage() {
           <CardContent className="space-y-4">
             {fundamentalTruths.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-[var(--muted-foreground)] uppercase mb-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase mb-2">
                   Fundamental Truths Discovered
                 </p>
                 <div className="space-y-2">
                   {fundamentalTruths.map((t) => (
                     <div key={t.id} className="flex items-start gap-2">
-                      <Star className="h-3.5 w-3.5 mt-0.5 text-[var(--fundamental)] shrink-0" />
+                      <Star className="h-3.5 w-3.5 mt-0.5 text-gold shrink-0" />
                       <div>
                         <p className="text-sm font-medium">{t.label}</p>
                         {t.description && (
-                          <p className="text-xs text-[var(--muted-foreground)]">{t.description}</p>
+                          <p className="text-xs text-muted-foreground">{t.description}</p>
                         )}
                       </div>
                     </div>
@@ -227,7 +227,7 @@ export default function DashboardPage() {
 
             {challengedAssumptions.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-[var(--muted-foreground)] uppercase mb-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase mb-2">
                   Challenged Assumptions
                 </p>
                 <div className="space-y-1">
@@ -246,7 +246,7 @@ export default function DashboardPage() {
 
       {/* Top solution */}
       {topSolution && (
-        <Card className="border-[var(--primary)]/20">
+        <Card className="border-primary/20">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">
               {topSolution.userRank === 1 ? "Top Ranked Solution" : "Recommended Solution"}
@@ -254,12 +254,12 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <h3 className="font-semibold text-lg mb-1">{topSolution.title}</h3>
-            <p className="text-sm text-[var(--muted-foreground)] mb-3">
+            <p className="text-sm text-muted-foreground mb-3">
               {topSolution.description}
             </p>
             {topSolution.aiRationale && (
-              <div className="ai-content pl-3 py-2">
-                <p className="text-xs text-[var(--muted-foreground)]">
+              <div className="ai-border pl-3 py-2">
+                <p className="text-xs text-muted-foreground">
                   {topSolution.aiRationale}
                 </p>
               </div>
@@ -279,7 +279,7 @@ export default function DashboardPage() {
               {analysis.assumptions.map((a) => (
                 <div
                   key={a.id}
-                  className="flex items-center gap-3 rounded-lg border border-[var(--border)] px-3 py-2"
+                  className="flex items-center gap-3 rounded-lg border border-border px-3 py-2"
                 >
                   <div className="shrink-0">
                     {a.validationStatus === "validated" && (
@@ -292,14 +292,14 @@ export default function DashboardPage() {
                       <XCircle className="h-4 w-4 text-red-600" />
                     )}
                     {a.validationStatus === "pending" && (
-                      <HelpCircle className="h-4 w-4 text-[var(--muted-foreground)]" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
                     )}
                   </div>
                   <p className="text-sm flex-1">{a.text}</p>
                   <Badge variant="secondary" className="text-[10px] shrink-0">
                     {a.category}
                   </Badge>
-                  <span className="text-xs text-[var(--muted-foreground)] shrink-0 w-8 text-right">
+                  <span className="text-xs text-muted-foreground shrink-0 w-8 text-right">
                     {a.confidence}%
                   </span>
                 </div>

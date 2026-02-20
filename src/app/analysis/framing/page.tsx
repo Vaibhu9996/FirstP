@@ -95,7 +95,7 @@ function FramingContent() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Problem Framing</h1>
-        <p className="text-[var(--muted-foreground)] mt-1">
+        <p className="text-muted-foreground mt-1">
           Define your problem clearly. AI will help you see it from multiple angles.
         </p>
       </div>
@@ -117,7 +117,7 @@ function FramingContent() {
             <Input value={analysis.framing.domain || ""} onChange={(e) => setDomain(e.target.value || null)} placeholder="Domain (optional)" className="sm:w-48" />
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[var(--muted-foreground)]">{localInput.length} characters</span>
+            <span className="text-xs text-muted-foreground">{localInput.length} characters</span>
             <Button onClick={handleAnalyze} disabled={!localInput.trim() || isStreaming} className="gap-2">
               <Sparkles className="h-4 w-4" />
               {isStreaming ? "Analyzing..." : "Analyze & Reframe"}
@@ -144,7 +144,7 @@ function FramingContent() {
                 key={stmt.id}
                 onClick={() => handleSelectFraming(stmt)}
                 className={`w-full text-left rounded-lg border p-4 transition-all ${
-                  stmt.selected ? "border-[var(--primary)] bg-[var(--primary)]/5 ring-1 ring-[var(--primary)]" : "border-[var(--border)] hover:border-[var(--primary)]/30"
+                  stmt.selected ? "border-primary bg-primary/5 ring-1 ring-primary" : "border-border hover:border-primary/30"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -152,12 +152,12 @@ function FramingContent() {
                     <Badge variant="secondary" className="mb-2">{stmt.perspective}</Badge>
                     <p className="text-sm">{stmt.text}</p>
                   </div>
-                  {stmt.selected && <Check className="h-5 w-5 text-[var(--primary)] shrink-0 mt-1" />}
+                  {stmt.selected && <Check className="h-5 w-5 text-primary shrink-0 mt-1" />}
                 </div>
               </button>
             ))}
             {analysis.framing.reframedStatements.length > 0 && (
-              <div className="pt-2 border-t border-[var(--border)]">
+              <div className="pt-2 border-t border-border">
                 {editingFraming ? (
                   <div className="space-y-2">
                     <Textarea value={customFraming} onChange={(e) => setCustomFraming(e.target.value)} placeholder="Write your own problem framing..." className="min-h-[80px]" />
@@ -167,7 +167,7 @@ function FramingContent() {
                     </div>
                   </div>
                 ) : (
-                  <Button variant="ghost" className="gap-2 text-[var(--muted-foreground)]" onClick={() => setEditingFraming(true)}>
+                  <Button variant="ghost" className="gap-2 text-muted-foreground" onClick={() => setEditingFraming(true)}>
                     <Edit3 className="h-3.5 w-3.5" />
                     Write your own framing
                   </Button>
@@ -179,15 +179,15 @@ function FramingContent() {
       )}
 
       {hasFraming && (
-        <Card className="border-[var(--primary)]/20 bg-[var(--primary)]/5">
+        <Card className="border-primary/20 bg-primary/5">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary)] text-white shrink-0">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shrink-0">
                 <Check className="h-4 w-4" />
               </div>
               <div className="flex-1">
                 <p className="font-medium mb-1">Selected Problem Framing</p>
-                <p className="text-sm text-[var(--muted-foreground)]">{analysis.framing.selectedFraming}</p>
+                <p className="text-sm text-muted-foreground">{analysis.framing.selectedFraming}</p>
               </div>
             </div>
             <div className="flex justify-end mt-4">

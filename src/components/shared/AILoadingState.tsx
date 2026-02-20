@@ -9,9 +9,9 @@ interface AILoadingStateProps {
 
 export function AILoadingState({ message = "Thinking..." }: AILoadingStateProps) {
   return (
-    <div className="ai-content pl-4 py-4 space-y-3">
-      <div className="flex items-center gap-2 text-sm text-[var(--muted-foreground)]">
-        <Brain className="h-4 w-4 animate-pulse text-[var(--primary)]" />
+    <div className="ai-border pl-4 py-4 space-y-3">
+      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+        <Brain className="h-4 w-4 animate-pulse text-primary" />
         <span>{message}</span>
       </div>
       <div className="space-y-2">

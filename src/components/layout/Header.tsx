@@ -45,7 +45,7 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
         <div className="flex h-14 items-center gap-4 px-4 md:px-6">
           <Button
             variant="ghost"
@@ -58,7 +58,7 @@ export function Header() {
           </Button>
 
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--primary)] text-white">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-white">
               <Lightbulb className="h-4 w-4" />
             </div>
             <span className="hidden sm:inline">FirstP</span>

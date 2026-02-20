@@ -65,7 +65,7 @@ function ValidationContent() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Data-Backed Validation</h1>
-        <p className="text-[var(--muted-foreground)] mt-1">Validate each claim with evidence. Every truth needs data to back it up.</p>
+        <p className="text-muted-foreground mt-1">Validate each claim with evidence. Every truth needs data to back it up.</p>
       </div>
 
       {validatableNodes.length > 0 && <div className="flex gap-4 text-sm"><span>{analysis.validations.length} / {validatableNodes.length} nodes validated</span></div>}
@@ -97,7 +97,7 @@ function ValidationContent() {
                       {node.label}
                       {node.isFundamental && <Badge variant="warning" className="text-[10px]">Fundamental</Badge>}
                     </CardTitle>
-                    {node.description && <p className="text-sm text-[var(--muted-foreground)] mt-1">{node.description}</p>}
+                    {node.description && <p className="text-sm text-muted-foreground mt-1">{node.description}</p>}
                   </div>
                   <div className="flex items-center gap-2">
                     {validation && <Badge variant={confidenceBadge[validation.overallConfidence].variant}>{confidenceBadge[validation.overallConfidence].label}</Badge>}
@@ -112,7 +112,7 @@ function ValidationContent() {
                   {isValidating && !validation && <AILoadingState message="Analyzing evidence..." />}
                   {validation && (
                     <>
-                      {validation.summary && <div className="ai-content pl-4 py-3 rounded-lg bg-[var(--muted)]/30"><p className="text-sm">{validation.summary}</p></div>}
+                      {validation.summary && <div className="ai-border pl-4 py-3 rounded-lg bg-muted/30"><p className="text-sm">{validation.summary}</p></div>}
                       {validation.suggestedRevision && (
                         <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
                           <p className="text-xs font-medium text-amber-600 dark:text-amber-400 mb-1">Suggested Revision</p>
@@ -126,15 +126,15 @@ function ValidationContent() {
                             {validation.evidence.map((ev) => {
                               const EvidenceIcon = evidenceTypeIcons[ev.type] || Brain;
                               return (
-                                <div key={ev.id} className="flex gap-3 rounded-lg border border-[var(--border)] p-3">
-                                  <div className="shrink-0 mt-0.5"><EvidenceIcon className="h-4 w-4 text-[var(--muted-foreground)]" /></div>
+                                <div key={ev.id} className="flex gap-3 rounded-lg border border-border p-3">
+                                  <div className="shrink-0 mt-0.5"><EvidenceIcon className="h-4 w-4 text-muted-foreground" /></div>
                                   <div className="flex-1 min-w-0">
                                     <p className="text-sm">{ev.content}</p>
                                     <div className="flex items-center gap-2 mt-1.5">
                                       <Badge variant={confidenceBadge[ev.confidence].variant} className="text-[10px]">{ev.confidence}</Badge>
                                       <Badge variant="secondary" className="text-[10px]">{ev.type.replace("_", " ")}</Badge>
                                       {ev.source && ev.sourceLabel && (
-                                        <a href={ev.source.startsWith("http") ? ev.source : undefined} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] text-[var(--primary)] hover:underline">
+                                        <a href={ev.source.startsWith("http") ? ev.source : undefined} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[10px] text-primary hover:underline">
                                           {ev.sourceLabel}<ExternalLink className="h-2.5 w-2.5" />
                                         </a>
                                       )}
@@ -159,7 +159,7 @@ function ValidationContent() {
                                     <p className="text-sm">{ev.content}</p>
                                     <div className="flex items-center gap-2 mt-1.5">
                                       <Badge variant="warning" className="text-[10px]">{ev.confidence}</Badge>
-                                      {ev.sourceLabel && <span className="text-[10px] text-[var(--muted-foreground)]">{ev.sourceLabel}</span>}
+                                      {ev.sourceLabel && <span className="text-[10px] text-muted-foreground">{ev.sourceLabel}</span>}
                                     </div>
                                   </div>
                                 </div>

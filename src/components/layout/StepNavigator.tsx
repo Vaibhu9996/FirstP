@@ -45,9 +45,9 @@ export function StepNavigator() {
   if (!sidebarOpen) return null;
 
   return (
-    <nav className="hidden md:flex flex-col w-64 border-r border-[var(--border)] bg-[var(--card)] p-4 gap-1">
+    <nav className="hidden md:flex flex-col w-64 border-r border-border bg-card p-4 gap-1">
       <div className="mb-4">
-        <p className="text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
           Analysis Steps
         </p>
       </div>
@@ -63,20 +63,20 @@ export function StepNavigator() {
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
               isActive
-                ? "bg-[var(--primary)]/10 text-[var(--primary)] font-medium"
+                ? "bg-primary/10 text-primary font-medium"
                 : status === "completed"
-                ? "text-[var(--foreground)] hover:bg-[var(--accent)]"
-                : "text-[var(--muted-foreground)] hover:bg-[var(--accent)] hover:text-[var(--foreground)]"
+                ? "text-foreground hover:bg-muted"
+                : "text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
           >
             <div
               className={cn(
                 "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-medium",
                 isActive
-                  ? "bg-[var(--primary)] text-white"
+                  ? "bg-primary text-white"
                   : status === "completed"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                  : "bg-[var(--muted)] text-[var(--muted-foreground)]"
+                  : "bg-muted text-muted-foreground"
               )}
             >
               {status === "completed" ? (
@@ -89,7 +89,7 @@ export function StepNavigator() {
             </div>
             <div className="flex flex-col">
               <span>{step.label}</span>
-              <span className="text-[10px] text-[var(--muted-foreground)]">
+              <span className="text-[10px] text-muted-foreground">
                 Step {idx + 1} of 6
               </span>
             </div>

@@ -86,13 +86,13 @@ function AssumptionsContent() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Assumption Extraction</h1>
-        <p className="text-[var(--muted-foreground)] mt-1">Uncover hidden assumptions. Challenge what you take for granted.</p>
+        <p className="text-muted-foreground mt-1">Uncover hidden assumptions. Challenge what you take for granted.</p>
       </div>
 
       {problemStatement && (
-        <Card className="bg-[var(--muted)]/50">
+        <Card className="bg-muted/50">
           <CardContent className="pt-6">
-            <p className="text-xs font-medium text-[var(--muted-foreground)] uppercase mb-1">Problem Statement</p>
+            <p className="text-xs font-medium text-muted-foreground uppercase mb-1">Problem Statement</p>
             <p className="text-sm">{problemStatement}</p>
           </CardContent>
         </Card>
@@ -109,7 +109,7 @@ function AssumptionsContent() {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Assumptions ({analysis.assumptions.length})</h2>
-            <div className="flex gap-2 text-xs text-[var(--muted-foreground)]">
+            <div className="flex gap-2 text-xs text-muted-foreground">
               <span>{analysis.assumptions.filter((a) => a.validationStatus === "challenged").length} challenged</span>
               <span>{analysis.assumptions.filter((a) => a.validationStatus === "validated").length} validated</span>
             </div>
@@ -121,7 +121,7 @@ function AssumptionsContent() {
               <Card key={assumption.id} className="transition-all hover:shadow-md">
                 <CardContent className="pt-5 pb-4 space-y-3">
                   <div className="flex items-start gap-3">
-                    <button onClick={() => cycleStatus(assumption)} className={`mt-0.5 shrink-0 rounded-full p-1.5 transition-colors ${assumption.validationStatus === "challenged" ? "bg-amber-500/10 text-amber-600" : assumption.validationStatus === "validated" ? "bg-emerald-500/10 text-emerald-600" : assumption.validationStatus === "disproved" ? "bg-red-500/10 text-red-600" : "bg-[var(--muted)] text-[var(--muted-foreground)]"}`} title={`Status: ${assumption.validationStatus}. Click to cycle.`}>
+                    <button onClick={() => cycleStatus(assumption)} className={`mt-0.5 shrink-0 rounded-full p-1.5 transition-colors ${assumption.validationStatus === "challenged" ? "bg-amber-500/10 text-amber-600" : assumption.validationStatus === "validated" ? "bg-emerald-500/10 text-emerald-600" : assumption.validationStatus === "disproved" ? "bg-red-500/10 text-red-600" : "bg-muted text-muted-foreground"}`} title={`Status: ${assumption.validationStatus}. Click to cycle.`}>
                       <StatusIcon className="h-3.5 w-3.5" />
                     </button>
                     <div className="flex-1 min-w-0">
@@ -131,7 +131,7 @@ function AssumptionsContent() {
                           <Button size="sm" onClick={() => { updateAssumption(assumption.id, { text: editText }); setEditingId(null); }}>Save</Button>
                         </div>
                       ) : (
-                        <p className="text-sm cursor-pointer hover:text-[var(--primary)]" onClick={() => { setEditingId(assumption.id); setEditText(assumption.text); }}>{assumption.text}</p>
+                        <p className="text-sm cursor-pointer hover:text-primary" onClick={() => { setEditingId(assumption.id); setEditText(assumption.text); }}>{assumption.text}</p>
                       )}
                       <div className="flex items-center gap-2 mt-2">
                         <Badge variant="secondary" className={categoryColors[assumption.category]}>{assumption.category}</Badge>
@@ -139,18 +139,18 @@ function AssumptionsContent() {
                         {assumption.isChallengeable && <Badge variant="warning" className="text-[10px]">Challengeable</Badge>}
                       </div>
                     </div>
-                    <Button variant="ghost" size="icon" className="shrink-0 text-[var(--muted-foreground)] hover:text-[var(--destructive)]" onClick={() => removeAssumption(assumption.id)}>
+                    <Button variant="ghost" size="icon" className="shrink-0 text-muted-foreground hover:text-danger" onClick={() => removeAssumption(assumption.id)}>
                       <Trash2 className="h-3.5 w-3.5" />
                     </Button>
                   </div>
                   <div className="pl-9">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-[var(--muted-foreground)]">Confidence</span>
+                      <span className="text-xs text-muted-foreground">Confidence</span>
                       <span className="text-xs font-medium">{confidenceLabel(assumption.confidence)}</span>
                     </div>
                     <Slider value={assumption.confidence} onChange={(val) => updateAssumption(assumption.id, { confidence: val })} showValue />
                   </div>
-                  {assumption.notes && <p className="pl-9 text-xs text-[var(--muted-foreground)] italic">{assumption.notes}</p>}
+                  {assumption.notes && <p className="pl-9 text-xs text-muted-foreground italic">{assumption.notes}</p>}
                 </CardContent>
               </Card>
             );

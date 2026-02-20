@@ -105,7 +105,7 @@ export function ApiKeyDialog({ open, onClose }: ApiKeyDialogProps) {
             href="https://console.anthropic.com/settings/keys"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-[var(--primary)] hover:underline"
+            className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
           >
             Get an API key from Anthropic Console
             <ExternalLink className="h-3 w-3" />
@@ -129,11 +129,11 @@ export function ApiKeyGate({ children }: { children: React.ReactNode }) {
   if (!hasKey) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="rounded-full bg-[var(--primary)]/10 p-4 mb-4">
-          <Key className="h-8 w-8 text-[var(--primary)]" />
+        <div className="rounded-full bg-primary/10 p-4 mb-4">
+          <Key className="h-8 w-8 text-primary" />
         </div>
         <h3 className="text-lg font-semibold mb-1">API Key Required</h3>
-        <p className="text-sm text-[var(--muted-foreground)] max-w-sm mb-4">
+        <p className="text-sm text-muted-foreground max-w-sm mb-4">
           To use AI features, you need to configure your Anthropic API key. It stays in your browser — never sent to any third party.
         </p>
         <Button onClick={() => setShowDialog(true)} className="gap-2">

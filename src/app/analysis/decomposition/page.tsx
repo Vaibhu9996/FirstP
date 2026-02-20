@@ -122,36 +122,36 @@ function DecompositionContent() {
     const isSelected = selectedNodeId === node.id;
 
     return (
-      <div key={node.id} className={level > 0 ? "ml-6 border-l border-[var(--border)] pl-4" : ""}>
-        <div className={`group flex items-start gap-2 rounded-lg p-3 transition-all cursor-pointer ${isSelected ? "bg-[var(--primary)]/5 border border-[var(--primary)]/20" : "hover:bg-[var(--muted)]/50"} ${node.isFundamental ? "ring-1 ring-[var(--fundamental)]/30" : ""}`} onClick={() => setSelectedNodeId(isSelected ? null : node.id)}>
+      <div key={node.id} className={level > 0 ? "ml-6 border-l border-border pl-4" : ""}>
+        <div className={`group flex items-start gap-2 rounded-lg p-3 transition-all cursor-pointer ${isSelected ? "bg-primary/5 border border-primary/20" : "hover:bg-muted/50"} ${node.isFundamental ? "ring-1 ring-gold/30" : ""}`} onClick={() => setSelectedNodeId(isSelected ? null : node.id)}>
           <button onClick={(e) => { e.stopPropagation(); updateNode(node.id, { collapsed: !node.collapsed }); }} className="mt-0.5 shrink-0">
-            {hasChildren ? (node.collapsed ? <ChevronRight className="h-4 w-4 text-[var(--muted-foreground)]" /> : <ChevronDown className="h-4 w-4 text-[var(--muted-foreground)]" />) : <div className="w-4" />}
+            {hasChildren ? (node.collapsed ? <ChevronRight className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />) : <div className="w-4" />}
           </button>
           <div className={`shrink-0 rounded-md p-1.5 ${config.color}`}><Icon className="h-3.5 w-3.5" /></div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <span className="font-medium text-sm">{node.label}</span>
-              {node.isFundamental && <Star className="h-3 w-3 text-[var(--fundamental)] fill-[var(--fundamental)]" />}
+              {node.isFundamental && <Star className="h-3 w-3 text-gold fill-gold" />}
               {node.source === "ai" && <Badge variant="outline" className="text-[10px] py-0">AI</Badge>}
             </div>
-            {node.description && <p className="text-xs text-[var(--muted-foreground)] mt-0.5 line-clamp-2">{node.description}</p>}
+            {node.description && <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{node.description}</p>}
           </div>
           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
             <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); handleDecompose(node.id); }} disabled={isStreaming} title="Decompose with AI"><Sparkles className="h-3 w-3" /></Button>
             <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); setSelectedNodeId(node.id); setShowAddForm(true); }} title="Add child node"><Plus className="h-3 w-3" /></Button>
-            {node.type !== "root" && <Button variant="ghost" size="icon" className="h-7 w-7 text-[var(--muted-foreground)] hover:text-[var(--destructive)]" onClick={(e) => { e.stopPropagation(); removeNode(node.id); }} title="Remove"><Trash2 className="h-3 w-3" /></Button>}
+            {node.type !== "root" && <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-danger" onClick={(e) => { e.stopPropagation(); removeNode(node.id); }} title="Remove"><Trash2 className="h-3 w-3" /></Button>}
           </div>
         </div>
 
         {showAddForm && selectedNodeId === node.id && (
-          <div className="ml-6 border-l border-[var(--border)] pl-4 mt-2">
+          <div className="ml-6 border-l border-border pl-4 mt-2">
             <Card className="border-dashed">
               <CardContent className="pt-4 pb-3 space-y-3">
                 <Input value={newLabel} onChange={(e) => setNewLabel(e.target.value)} placeholder="Node label" autoFocus onKeyDown={(e) => { if (e.key === "Enter") handleAddManualNode(node.id); if (e.key === "Escape") setShowAddForm(false); }} />
                 <Textarea value={newDescription} onChange={(e) => setNewDescription(e.target.value)} placeholder="Description (optional)" className="min-h-[60px]" />
                 <div className="flex gap-2 flex-wrap">
                   {(["component", "principle", "question", "constraint"] as NodeType[]).map((t) => (
-                    <button key={t} onClick={() => setNewType(t)} className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${newType === t ? "border-[var(--primary)] bg-[var(--primary)]/10 text-[var(--primary)]" : "border-[var(--border)]"}`}>{nodeTypeConfig[t].label}</button>
+                    <button key={t} onClick={() => setNewType(t)} className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${newType === t ? "border-primary bg-primary/10 text-primary" : "border-border"}`}>{nodeTypeConfig[t].label}</button>
                   ))}
                 </div>
                 <div className="flex gap-2">
@@ -175,13 +175,13 @@ function DecompositionContent() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold">Decomposition Tree</h1>
-        <p className="text-[var(--muted-foreground)] mt-1">Break your problem into fundamental components. Keep decomposing until you reach irreducible truths.</p>
+        <p className="text-muted-foreground mt-1">Break your problem into fundamental components. Keep decomposing until you reach irreducible truths.</p>
       </div>
 
       {analysis.tree.nodes.length > 0 && (
         <div className="flex gap-4 text-sm">
-          <div className="flex items-center gap-1.5"><GitBranch className="h-4 w-4 text-[var(--muted-foreground)]" /><span>{analysis.tree.nodes.length} nodes</span></div>
-          <div className="flex items-center gap-1.5"><Star className="h-4 w-4 text-[var(--fundamental)]" /><span>{fundamentalCount} fundamental truths</span></div>
+          <div className="flex items-center gap-1.5"><GitBranch className="h-4 w-4 text-muted-foreground" /><span>{analysis.tree.nodes.length} nodes</span></div>
+          <div className="flex items-center gap-1.5"><Star className="h-4 w-4 text-gold" /><span>{fundamentalCount} fundamental truths</span></div>
         </div>
       )}
 

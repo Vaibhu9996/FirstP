@@ -28,7 +28,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
           onChange={(e) => onChange?.(Number(e.target.value))}
           className="confidence-track h-2 w-full cursor-pointer appearance-none rounded-full [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-gray-300"
           style={{
-            background: `linear-gradient(to right, var(--confidence-low) 0%, var(--confidence-mid) 50%, var(--confidence-high) 100%)`,
+            background: `linear-gradient(to right, var(--color-danger) 0%, var(--color-warning) 50%, var(--color-success) 100%)`,
           }}
           {...props}
         />
