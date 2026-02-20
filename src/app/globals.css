@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+  --radius: 0.625rem;
+  --ai-gradient-from: #3b82f6;
+  --ai-gradient-to: #8b5cf6;
+  --confidence-low: #ef4444;
+  --confidence-mid: #f59e0b;
+  --confidence-high: #22c55e;
+  --fundamental: #d97706;
+}
+
+.dark {
+  --background: #0a0a0b;
+  --foreground: #f1f5f9;
+  --card: #111113;
+  --card-foreground: #f1f5f9;
+  --popover: #111113;
+  --popover-foreground: #f1f5f9;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1e22;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1e1e22;
+  --muted-foreground: #94a3b8;
+  --accent: #1e1e22;
+  --accent-foreground: #f1f5f9;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --ai-gradient-from: #60a5fa;
+  --ai-gradient-to: #a78bfa;
+  --confidence-low: #f87171;
+  --confidence-mid: #fbbf24;
+  --confidence-high: #4ade80;
+  --fundamental: #fbbf24;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans, system-ui, -apple-system, sans-serif);
+}
+
+/* AI content indicator */
+.ai-content {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, var(--ai-gradient-from), var(--ai-gradient-to)) 1;
+}
+
+/* Streaming cursor */
+.streaming-cursor::after {
+  content: "▊";
+  animation: blink 1s step-end infinite;
+  color: var(--primary);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .print-break { page-break-before: always; }
+}
+
+/* Confidence gradient for sliders */
+.confidence-track {
+  background: linear-gradient(to right, var(--confidence-low), var(--confidence-mid), var(--confidence-high));
+}
+
+/* React Flow overrides */
+.react-flow__node {
+  border-radius: var(--radius);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 3px;
+  opacity: 0.3;
+}
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.5;
+}
